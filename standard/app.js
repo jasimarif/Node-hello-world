@@ -26,7 +26,17 @@ app.get('/', (req, res) => {
 });
 
 app.get('/webhooks', (req, res) => {
-  res.status(200).send('Hello, webhooks!').end();
+  axios.post('https://webhook.site/ee5decd7-9c8b-4459-9839-5e54ec26f5cd', {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+  //res.status(200).send('Hello, webhooks!').end();
 });
 
 app.post("/webhooks", (req, res) => {
