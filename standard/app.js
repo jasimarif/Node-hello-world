@@ -32,9 +32,9 @@ app.get('/webhooks', (req, res) => {
 app.post("/webhooks", (req, res) => {
   try {
       console.log("/webhooks POST route hit! req.body: ", req.body)
-      // postObject = req.body
-      // req.headers['someHeader'] = 'someValue'
-      // callSuitlelet(req.body)
+      postObject = req.body
+      req.headers['someHeader'] = 'someValue'
+      callSuitlelet(req.body)
       res.sendStatus(200)
 
 }
