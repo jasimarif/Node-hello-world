@@ -23,6 +23,10 @@ app.get('/', (req, res) => {
   res.status(200).send('Hello, world!').end();
 });
 
+app.get('/webhooks', (req, res) => {
+  res.status(200).send('Hello, webhooks!').end();
+});
+
 // Start the server
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
