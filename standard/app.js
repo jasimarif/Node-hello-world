@@ -36,13 +36,13 @@ app.post("/webhooks", (req, res) => {
       //console.log("/webhooks POST route hit! req.body: ", req.body)
       postObject = "JASIM"
       const url="https://tstdrv1019523.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=792&deploy=1&compid=TSTDRV1019523&h=e9ce716184022a4abffb"
-      request({ url, json: true,
-          method:"POST",
-          body:"Jasim",
-          headers: {
-              "User-Agent": "Mozilla/5.0",
-          }
-      })
+      // request({ url, json: true,
+      //     method:"POST",
+      //     body:"Jasim",
+      //     headers: {
+      //         "User-Agent": "Mozilla/5.0",
+      //     }
+      // })
       res.status(200).send('Post route hit').end();
 
 
