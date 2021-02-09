@@ -35,7 +35,14 @@ app.post("/webhooks", (req, res) => {
   try {
       //console.log("/webhooks POST route hit! req.body: ", req.body)
       postObject = "JASIM"
-      callSuitlelet(postObject)
+      const url="https://tstdrv1019523.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=792&deploy=1&compid=TSTDRV1019523&h=e9ce716184022a4abffb"
+      request({ url, json: true,
+          method:"POST",
+          body:obj,
+          headers: {
+              "User-Agent": "Mozilla/5.0",
+          }
+      })
       res.status(200).send('Post route hit').end();
 
 
