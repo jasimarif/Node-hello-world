@@ -33,9 +33,9 @@ app.get('/webhooks', (req, res) => {
 
 app.post("/webhooks", (req, res) => {
   try {
-      console.log("/webhooks POST route hit! req.body: ", req.body)
-      postObject = req.body
-      callSuitlelet(req.body)
+      //console.log("/webhooks POST route hit! req.body: ", req.body)
+      postObject = "JASIM"
+      callSuitlelet(postObject)
       res.status(200).send('Post route hit').end();
 
 
