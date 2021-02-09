@@ -17,6 +17,7 @@ const express = require('express');
 const app = express();
 var request = require('request');
 const bodyParser = require('body-parser');
+const axios = require('axios');
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 
@@ -30,13 +31,38 @@ app.get('/webhooks', (req, res) => {
 
 app.post("/webhooks", (req, res) => {
   try {
-    res.status(200).send('Post route hit').end();
 
+    axios.post('https://webhook.site/ee5decd7-9c8b-4459-9839-5e54ec26f5cd', {
+      firstName: 'Fred',
+      lastName: 'Flintstone'
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+    axios.post('https://tstdrv1019523.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=792&deploy=1&compid=TSTDRV1019523&h=e9ce716184022a4abffb', {
+      firstName: 'Fred',
+      lastName: 'Flintstone'
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    res.status(200).send('Post route hit').end();
+    
 
   }
   catch (err) {
     console.log("/webhooks route error: ", err)
-    res.status(404).send('Error').end();
+    return res.status(404).json({
+      success: false,
+      message: `${err}`
+  })
   }
 })
 
