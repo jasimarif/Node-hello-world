@@ -30,44 +30,35 @@ app.get('/webhooks', (req, res) => {
 
 app.post("/webhooks", (req, res) => {
   try {
-      //console.log("/webhooks POST route hit! req.body: ", req.body)
-     var postObject = "JASIM"
-      const url="https://tstdrv1019523.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=792&deploy=1&compid=TSTDRV1019523&h=e9ce716184022a4abffb"
-      // request({ url, json: true,
-      //     method:"POST",
-      //     body:"Jasim",
-      //     headers: {
-      //         "User-Agent": "Mozilla/5.0",
-      //     }
-      // })
-      res.status(200).send('Post route hit').end();
+    res.status(200).send('Post route hit').end();
 
 
-}
+  }
   catch (err) {
-      console.log("/webhooks route error: ", err)
-      res.status(404).send('Error').end();
+    console.log("/webhooks route error: ", err)
+    res.status(404).send('Error').end();
   }
 })
 
 
-function  callSuitlelet(obj) {
-  const url="https://tstdrv1019523.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=792&deploy=1&compid=TSTDRV1019523&h=e9ce716184022a4abffb"
-  request({ url, json: true,
-      method:"POST",
-      body:obj,
-      headers: {
-          "User-Agent": "Mozilla/5.0",
-      }
-  }, 
-  (error, response,body) => {
+function callSuitlelet(obj) {
+  const url = "https://tstdrv1019523.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=792&deploy=1&compid=TSTDRV1019523&h=e9ce716184022a4abffb"
+  request({
+    url, json: true,
+    method: "POST",
+    body: obj,
+    headers: {
+      "User-Agent": "Mozilla/5.0",
+    }
+  },
+    (error, response, body) => {
       if (error) {
-          console.log('Unable to connect to suitelet', body)
+        console.log('Unable to connect to suitelet', body)
       }
-      else{
-          console.log(`response ${response}`)
+      else {
+        console.log(`response ${response}`)
       }
-  })
+    })
 }
 
 // Start the server
