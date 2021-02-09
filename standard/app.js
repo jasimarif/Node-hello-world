@@ -26,17 +26,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/webhooks', (req, res) => {
-  axios.post('https://webhook.site/ee5decd7-9c8b-4459-9839-5e54ec26f5cd', {
-    firstName: 'Fred',
-    lastName: 'Flintstone'
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-  //res.status(200).send('Hello, webhooks!').end();
+
+  res.status(200).send('Hello, webhooks!').end();
 });
 
 app.post("/webhooks", (req, res) => {
@@ -46,25 +37,30 @@ app.post("/webhooks", (req, res) => {
       firstName: 'Fred',
       lastName: 'Flintstone'
     })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     axios.post('https://tstdrv1019523.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=792&deploy=1&compid=TSTDRV1019523&h=e9ce716184022a4abffb', {
       firstName: 'Fred',
       lastName: 'Flintstone'
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    },
+      {
+        headers: {
+          "User-Agent": "Mozilla/5.0"
+        }
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
     res.status(200).send('Post route hit').end();
-    
+
 
   }
   catch (err) {
@@ -72,30 +68,10 @@ app.post("/webhooks", (req, res) => {
     return res.status(404).json({
       success: false,
       message: `${err}`
-  })
+    })
   }
 })
 
-
-function callSuitlelet(obj) {
-  const url = "https://tstdrv1019523.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=792&deploy=1&compid=TSTDRV1019523&h=e9ce716184022a4abffb"
-  request({
-    url, json: true,
-    method: "POST",
-    body: obj,
-    headers: {
-      "User-Agent": "Mozilla/5.0",
-    }
-  },
-    (error, response, body) => {
-      if (error) {
-        console.log('Unable to connect to suitelet', body)
-      }
-      else {
-        console.log(`response ${response}`)
-      }
-    })
-}
 
 // Start the server
 const PORT = process.env.PORT || 8080;
