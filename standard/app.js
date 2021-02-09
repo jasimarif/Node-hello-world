@@ -20,6 +20,8 @@ const express = require('express');
 const app = express();
 var request = require('request');
 const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.status(200).send('Hello, world!').end();
@@ -35,12 +37,13 @@ app.post("/webhooks", (req, res) => {
       postObject = req.body
       req.headers['someHeader'] = 'someValue'
       callSuitlelet(req.body)
-      res.sendStatus(200)
+      res.status(200).send('Post route hit').end();
+
 
 }
   catch (err) {
       console.log("/webhooks route error: ", err)
-      res.sendStatus(404)
+      res.status(404).send('Error').end();
   }
 })
 
@@ -50,9 +53,9 @@ function  callSuitlelet(obj) {
   request({ url, json: true,
       method:"POST",
       body:obj,
-      // headers: {
-      //     "User-Agent": "Mozilla/5.0",
-      // }
+      headers: {
+          "User-Agent": "Mozilla/5.0",
+      }
   }, 
   (error, response,body) => {
       if (error) {
