@@ -32,6 +32,8 @@ app.get('/webhooks', (req, res) => {
 
 app.post("/webhooks", (req, res) => {
   try {
+    console.log(req.body)
+
     axios.post('https://tstdrv1019523.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=792&deploy=1&compid=TSTDRV1019523&h=e9ce716184022a4abffb', {
       firstName: 'Fred',
       request: req.body
