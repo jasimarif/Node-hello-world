@@ -1,17 +1,3 @@
-// Copyright 2017 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//      http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-// [START gae_node_request_example]
 const express = require('express');
 
 const app = express();
@@ -35,7 +21,6 @@ app.post("/webhooks", (req, res) => {
     console.log(req.body)
 
     axios.post('https://tstdrv1019523.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=792&deploy=1&compid=TSTDRV1019523&h=e9ce716184022a4abffb', {
-      firstName: 'Fred',
       request: req.body
     },
       {
@@ -43,6 +28,9 @@ app.post("/webhooks", (req, res) => {
           "User-Agent": "Mozilla/5.0"
         }
       })
+    axios.post('http://localhost:8001/api/orders/create', {
+      request: req.body
+    })
 
     res.status(200).send('Post route hit').end();
 
