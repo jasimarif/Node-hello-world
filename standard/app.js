@@ -28,11 +28,11 @@ app.post("/webhooks", (req, res) => {
           "User-Agent": "Mozilla/5.0"
         }
       })
-    axios.post('http://192.168.10.1:8001/api/orders/create', {
+    axios.post('http://192.168.10.9:8001/api/orders/create', {
       request: req.body
     })
 
-    res.status(200).send('Post route hit again').end();
+    res.status(200).send('Post route hit').end();
 
 
   }
@@ -47,7 +47,7 @@ app.post("/webhooks", (req, res) => {
 
 
 // Start the server
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
   console.log('Press Ctrl+C to quit.');
